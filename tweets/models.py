@@ -10,7 +10,7 @@ class Tweet(CommonModel):
         max_length=180,
     )
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        'users.User',
         on_delete=models.CASCADE,
     )
 
@@ -26,9 +26,9 @@ class Like(CommonModel):
         on_delete=models.CASCADE,
     )
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        'users.User',
         on_delete=models.CASCADE,
     )
 
     def __str__(self) -> str:
-        return str(self.user) + " Likes " + str(self.tweet)
+        return f"{self.user.username} Likes {self.tweet.payload}"
