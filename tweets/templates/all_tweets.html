@@ -1,0 +1,9 @@
+<h3>{{title}}</h3>
+
+<ul>
+  {% for tweet in tweets %}
+  <li>
+    <a href="/{{tweet.pk}}"> {{tweet.payload}} </a>
+  </li>
+  {% endfor %}
+</ul>
