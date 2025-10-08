@@ -1,4 +1,4 @@
-## 10/6 Power Admin Challenge
+## 10/7 Power Admin Challenge
 
 ![10/7 Power Admin challenge](./challenge_screenshots/challenge1007.png)
 

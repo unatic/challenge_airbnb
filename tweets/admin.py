@@ -3,23 +3,23 @@ from .models import Tweet, Like
 # Register your models here.
 
 
-class WordFilter(admin.SimpleListFilter):
+class ElonFilter(admin.SimpleListFilter):
 
     title = "Filter by Keyword"
     parameter_name = "keyword"
 
     def lookups(self, request, model_admin):
         return [
-            ("include", "Contain Elon Musk"),
-            ("exclude", "Not Cotain Elon Musk"),
+            ("elon", "Tweets with Elon"),
+            ("no_elon", "Tweets without Elon"),
         ]
 
     def queryset(self, request, tweets):
         keyword = self.value()
         if keyword:
-            if keyword == 'include':
+            if keyword == 'elon':
                 return tweets.filter(payload__icontains='Elon Musk')
-            elif keyword == 'exclude':
+            elif keyword == 'no_elon':
                 return tweets.exclude(payload__icontains='Elon Musk')
         else:
             return tweets
@@ -40,7 +40,7 @@ class TweetAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
-        WordFilter,
+        ElonFilter,
         "created_at",
     )
 
