@@ -1,8 +1,23 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+#from django.shortcuts import render
+#from django.http import HttpResponse
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import TweetSerializer
 
 from .models import Tweet
 
+@api_view()
+def tweets(request):
+    all_tweets = Tweet.objects.all()
+    serializer = TweetSerializer(all_tweets, many=True)
+    return Response(
+        {
+            "ok": True,
+            "tweets": serializer.data,
+        }
+    )
+'''
 def see_all_tweets(request):
     tweets = Tweet.objects.all()
     return render(
@@ -32,3 +47,4 @@ def see_one_tweet(request, tweet_pk):
                 "not_found": True,
             },
         )
+'''
