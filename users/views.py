@@ -1,13 +1,12 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import TweetSerializer
-
+from tweets.serializers import TweetSerializer
 from .models import User
 
-@api_view()
-def tweets(request, user_pk):
+@api_view(["GET"])
+def tweets_by_user(request, user_pk):
     try:
         user_tweets = User.objects.get(pk=user_pk).tweets.all()
         serializer = TweetSerializer(user_tweets, many=True)

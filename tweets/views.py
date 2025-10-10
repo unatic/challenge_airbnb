@@ -7,7 +7,7 @@ from .serializers import TweetSerializer
 
 from .models import Tweet
 
-@api_view()
+@api_view(["GET"])
 def tweets(request):
     all_tweets = Tweet.objects.all()
     serializer = TweetSerializer(all_tweets, many=True)
